@@ -3,22 +3,22 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Catat BBM - Pencatat Pengeluaran Bensin Harian</title>
+<title>Pembelian BBM - Pencatat Pengeluaran Bensin Harian</title>
 <meta name="description" content="Catat pengeluaran bensin (Pertamax, Pertalite) per tanggal lewat kalender. Ringan, cepat, dan nyaman dipakai di ponsel.">
 <meta name="robots" content="index,follow">
 <meta name="theme-color" content="#0B0F14">
 <meta name="color-scheme" content="dark">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="Catat BBM">
+<meta name="apple-mobile-web-app-title" content="Pembelian BBM">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="id_ID">
-<meta property="og:title" content="Catat BBM - Pencatat Pengeluaran Bensin">
+<meta property="og:title" content="Pembelian BBM - Pencatat Pengeluaran Bensin">
 <meta property="og:description" content="Catat pengeluaran bensin harian lewat kalender, nyaman di ponsel.">
 <meta name="twitter:card" content="summary">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23151B23'/%3E%3Cpath d='M16 6c4 5 7 8.5 7 12a7 7 0 0 1-14 0c0-3.5 3-7 7-12z' fill='%23F5A524'/%3E%3C/svg%3E">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Catat BBM","applicationCategory":"FinanceApplication","operatingSystem":"Any","inLanguage":"id","description":"Pencatat pengeluaran bensin harian berbasis kalender."}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Pembelian BBM","applicationCategory":"FinanceApplication","operatingSystem":"Any","inLanguage":"id","description":"Pencatat pengeluaran bensin harian berbasis kalender."}</script>
 <style>
 :root{--bg:#0B0F14;--s:#151B23;--s2:#1D2530;--ln:#263040;--tx:#E6EAF0;--mu:#8A94A3;--am:#F5A524;--rd:#F87171}
 *{box-sizing:border-box}[hidden]{display:none!important}
@@ -27,15 +27,19 @@ button,input{font:inherit;color:inherit}button{cursor:pointer}
 :focus-visible{outline:2px solid var(--am);outline-offset:2px}
 .app{max-width:480px;margin:0 auto;padding:max(16px,env(safe-area-inset-top)) 16px 40px}
 header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
-h1{margin:0;font-size:20px;font-weight:700}h2{margin:0 0 8px;font-size:16px}
+h1{display:flex;align-items:center;gap:10px;margin:0;font-size:20px;font-weight:700}
 .hb{display:flex;gap:8px}
 .pill{background:none;border:1px solid var(--ln);border-radius:99px;padding:5px 12px;font-size:13px;color:var(--mu);transition:.2s}
 .pill:active{transform:scale(.94)}.pill[data-m=err]{color:var(--rd);border-color:var(--rd)}
-.cal,.day{background:var(--s);border:1px solid var(--ln);border-radius:18px;padding:14px;margin-bottom:14px}
+.cal{padding:14px}.cal,.dd{background:var(--s);border:1px solid var(--ln);border-radius:18px;margin-bottom:14px}
 .nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
 .nav button{width:42px;height:42px;border:0;border-radius:12px;background:var(--s2);font-size:22px;line-height:1;transition:.12s}
 .nav button:active{transform:scale(.88)}.nav button:disabled{opacity:.3;cursor:default}
-.ttl{text-align:center}.ttl strong{display:block;font-size:17px}.ttl span{font-size:13px;color:var(--mu)}.ttl b{color:var(--tx);font-size:15px}
+.mn{font-size:18px;font-weight:700}
+.big{display:flex;justify-content:center;align-items:baseline;gap:8px;margin:6px 0 0}
+.big .rp{font-size:20px;font-weight:600;color:var(--mu)}
+.big b{font-size:clamp(40px,13vw,54px);font-weight:800;letter-spacing:-.02em;line-height:1.1;font-variant-numeric:tabular-nums;background:linear-gradient(100deg,var(--tx) 42%,var(--am) 50%,var(--tx) 58%);background-size:300% 100%;background-position:100% 0;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;animation:shine 7s linear infinite}
+.sub{margin:0 0 14px;text-align:center;color:var(--mu);font-size:14px}
 .week,.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
 .week span{text-align:center;font-size:12px;color:var(--mu);padding-bottom:4px}
 .grid.sl{animation:sl .25s ease-out}.grid.sr{animation:sr .25s ease-out}
@@ -51,9 +55,9 @@ h1{margin:0;font-size:20px;font-weight:700}h2{margin:0 0 8px;font-size:16px}
 .d.on.has::after{box-shadow:none}
 .d.pop{animation:pop .5s}
 .d.pop::before{content:"";position:absolute;inset:-2px;border-radius:14px;border:2px solid var(--am);animation:ring .7s forwards;pointer-events:none}
-.lg{display:flex;align-items:center;gap:8px;margin:12px 0 0;color:var(--mu);font-size:13px}
+.lg{display:flex;align-items:center;justify-content:center;gap:8px;margin:12px 0 0;color:var(--mu);font-size:13px}
 .lg i{width:9px;height:9px;border-radius:50%;background:var(--am);box-shadow:0 0 0 3px rgba(245,165,36,.22)}
-.day.sw{animation:up .25s ease-out}
+.dd.sw{animation:up .25s ease-out}
 .list{list-style:none;margin:0 0 12px;padding:0}
 .list li{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--ln)}
 .list li.n{animation:inn .35s ease-out}.list .e{color:var(--mu)}
@@ -71,7 +75,7 @@ input::placeholder{color:var(--mu)}
 .submit{width:100%;height:54px;border:0;border-radius:12px;background:var(--am);color:#1A1203;font-weight:700;transition:transform .1s,background .2s,color .2s}
 .submit:active:not(:disabled){transform:scale(.97)}.submit:disabled{background:var(--s2);color:var(--mu);cursor:default}
 .link{background:none;border:0;padding:8px 0;color:var(--mu);font-size:14px;text-decoration:underline}
-.mh{display:flex;justify-content:space-between;margin-top:14px;padding-bottom:4px;border-bottom:2px solid var(--ln)}.m{color:var(--mu)}
+.mh{display:flex;justify-content:space-between;align-items:baseline;margin-top:14px;padding-bottom:4px;border-bottom:2px solid var(--ln)}.mh b:last-child{font-size:20px}.m{color:var(--mu)}
 .toast{position:fixed;left:50%;bottom:20px;z-index:30;max-width:calc(100vw - 32px);padding:11px 16px;border-radius:99px;background:var(--s2);border:1px solid var(--ln);font-size:15px;opacity:0;pointer-events:none;transform:translate(-50%,16px);transition:.25s}
 .toast.show{opacity:1;transform:translate(-50%,0)}.toast.err{background:#7F1D1D;border-color:#7F1D1D}
 .lock{position:fixed;inset:0;z-index:20;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;padding:24px;background:var(--bg);transition:opacity .35s,transform .35s}
@@ -84,6 +88,31 @@ input::placeholder{color:var(--mu)}
 .pad{display:grid;grid-template-columns:repeat(3,72px);gap:14px}
 .pad button{height:72px;border-radius:50%;border:0;background:var(--s2);font-size:26px;font-weight:600;transition:transform .1s,background .15s}
 .pad button:active{transform:scale(.88);background:var(--ln)}.pad .z{background:none;color:var(--mu)}
+.logo{position:relative;display:inline-grid;place-items:center;width:34px;height:34px;flex:none}
+.logo::before{content:"";position:absolute;inset:0;border-radius:50%;border:2px dashed rgba(245,165,36,.65);animation:spin 12s linear infinite}
+.logo svg{width:16px;height:16px;fill:var(--am);animation:float 3s ease-in-out infinite}
+.logo.big{width:64px;height:64px}.logo.big svg{width:28px;height:28px}
+.mq{overflow:hidden;margin-bottom:14px;padding:9px 0;border-radius:12px;background:var(--s);font-size:13px;color:var(--mu);-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
+.mqt{display:flex;width:max-content;animation:mq 28s linear infinite}
+.mq:active .mqt{animation-play-state:paused}
+.mqg{display:flex;align-items:center;gap:26px;padding-right:26px;flex:none;min-width:min(100vw,480px)}
+.mqg b{color:var(--tx)}
+.dm{display:inline-block;font-style:normal;color:var(--am);animation:spin 5s linear infinite}
+.pill[data-m=busy]::before{content:"";display:inline-block;width:9px;height:9px;margin-right:6px;border:2px solid var(--am);border-top-color:transparent;border-radius:50%;animation:spin .8s linear infinite}
+.ddh{position:relative;display:block;width:100%;padding:16px 46px;background:none;border:0;text-align:center}
+.ddt{display:block}.ddt strong{display:block;font-size:18px}
+.ddt small{display:block;margin-top:2px;color:var(--mu);font-size:14px}.ddt small.has{color:var(--am);font-weight:700;font-size:16px}
+.chev{position:absolute;right:16px;top:50%;margin-top:-10px;color:var(--mu);transition:transform .35s}
+.open>.ddh .chev{transform:rotate(180deg)}
+.ddb{display:grid;grid-template-rows:0fr;transition:grid-template-rows .35s ease}
+.open>.ddb{grid-template-rows:1fr}
+.ddi{min-height:0;overflow:hidden;visibility:hidden;transition:visibility 0s .35s}
+.open>.ddb>.ddi{visibility:visible;transition-delay:0s}
+.ddp{padding:0 14px 14px}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes float{50%{transform:translateY(-2px)}}
+@keyframes shine{to{background-position:0 0}}
+@keyframes mq{to{transform:translateX(-50%)}}
 @keyframes sl{from{opacity:0;transform:translateX(28px)}}
 @keyframes sr{from{opacity:0;transform:translateX(-28px)}}
 @keyframes up{from{opacity:.3;transform:translateY(10px)}}
@@ -98,7 +127,8 @@ input::placeholder{color:var(--mu)}
 <noscript><p style="padding:24px">Aktifkan JavaScript untuk memakai Catat BBM.</p></noscript>
 
 <div id="lock" class="lock" role="dialog" aria-modal="true" aria-label="Masukkan PIN">
-  <p class="brand">Catat BBM</p>
+  <span class="logo big"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4c4.5 5.5 8 9.5 8 14a8 8 0 0 1-16 0c0-4.5 3.5-8.5 8-14z"/></svg></span>
+  <p class="brand">Pembelian BBM</p>
   <p id="lm">Masukkan PIN</p>
   <div class="dots" id="dots"><i></i><i></i><i></i><i></i></div>
   <div class="pad" id="pad"></div>
@@ -106,34 +136,39 @@ input::placeholder{color:var(--mu)}
 
 <main class="app" id="app" inert>
 <header>
-  <h1>Catat BBM</h1>
+  <h1><span class="logo"><svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 4c4.5 5.5 8 9.5 8 14a8 8 0 0 1-16 0c0-4.5 3.5-8.5 8-14z"/></svg></span>Pembelian BBM</h1>
   <div class="hb"><button id="sync" class="pill" data-m="off">Memuat</button><button id="lk" class="pill">Kunci</button></div>
 </header>
+<div class="mq" id="mq" aria-hidden="true"></div>
 
 <section class="cal" id="cal" aria-label="Kalender pengeluaran BBM">
   <div class="nav">
     <button id="prev" aria-label="Bulan sebelumnya">‹</button>
-    <div class="ttl"><strong id="mname"></strong><span><b id="mt">Rp 0</b> <small id="mc"></small></span></div>
+    <strong id="mname" class="mn"></strong>
     <button id="next" aria-label="Bulan berikutnya">›</button>
   </div>
+  <div class="big"><span class="rp">Rp</span><b id="mt">0</b></div>
+  <p class="sub" id="mc"></p>
   <div class="week"><span>Sen</span><span>Sel</span><span>Rab</span><span>Kam</span><span>Jum</span><span>Sab</span><span>Min</span></div>
   <div class="grid" id="grid"></div>
   <p class="lg"><i></i>Hari isi BBM</p>
 </section>
 
-<section class="day" id="day" aria-label="Detail hari">
-  <h2 id="dtitle"></h2>
+<section class="dd" id="day" aria-label="Detail hari">
+  <button class="ddh" id="dh" aria-expanded="false" aria-controls="db"><span class="ddt"><strong id="dtitle"></strong><small id="dinfo"></small></span><svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+  <div class="ddb" id="db"><div class="ddi"><div class="ddp">
   <ul class="list" id="dlist"></ul>
   <div class="chips" id="chips"></div>
   <label class="manual"><span>Rp</span><input id="manual" inputmode="numeric" autocomplete="off" placeholder="Nominal lain" aria-label="Nominal lain"></label>
   <input id="note" maxlength="120" placeholder="Catatan (opsional)" aria-label="Catatan">
   <div class="chips tpl" id="tpls"></div>
   <button id="submit" class="submit" disabled>Pilih nominal</button>
+  </div></div></div>
 </section>
 
-<section>
-  <button id="toggle" class="link">Tampilkan semua riwayat</button>
-  <div id="hist" hidden></div>
+<section class="dd" id="hs" aria-label="Riwayat pembelian">
+  <button class="ddh" id="hh" aria-expanded="false" aria-controls="hb"><span class="ddt"><strong>Riwayat pembelian</strong><small id="hinfo"></small></span><svg class="chev" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+  <div class="ddb" id="hb"><div class="ddi"><div class="ddp" id="hist"></div></div></div>
 </section>
 </main>
 <div id="toast" class="toast" role="status"></div>
@@ -173,7 +208,7 @@ function h(tag,props,...kids){
 
 let today=iso(new Date()),pin='',ok=false,busy=false,fp=null,raf=0,tt;
 const st={date:today,view:{y:new Date().getFullYear(),m:new Date().getMonth()},amount:0,
-  rows:[],pend:ld(KP).map(norm),sync:'',all:false,pop:null,fresh:null};
+  rows:[],pend:ld(KP).map(norm),sync:'',all:false,open:false,pop:null,fresh:null};
 const urlOk=()=>/^https:\/\/script\.google\.com\//.test(C.APPS_SCRIPT_URL||'');
 const conf=()=>urlOk()&&ok;
 const A=()=>{const ids=new Set(st.rows.map(r=>r.id));return[...st.rows,...st.pend.filter(p=>!ids.has(p.id))]};
@@ -255,17 +290,28 @@ async function tryUnlock(){
 }
 
 // ---------- Kalender ----------
+let tk='';
+function renderTicker(){
+  const rs=A(),cur=rs.filter(r=>r.date.startsWith(today.slice(0,7))),s=cur.reduce((a,r)=>a+r.amount,0);
+  const last=rs.reduce((a,r)=>r.date>a?r.date:a,'');
+  const it=[['Bulan ini','Rp '+fmt(s)],['Rata-rata per isi',cur.length?'Rp '+fmt(s/cur.length):'-'],
+    ['Isi terakhir',last?pd(last).getDate()+' '+BL[pd(last).getMonth()].slice(0,3):'belum ada'],
+    ['Total semua','Rp '+fmt(rs.reduce((a,r)=>a+r.amount,0))]];
+  const key=JSON.stringify(it);if(key===tk)return;tk=key;
+  const g=()=>h('div',{class:'mqg'},it.flatMap(([a,b])=>[h('span',null,a+' ',h('b',{text:b})),h('i',{class:'dm',text:'✦'})]));
+  $('#mq').replaceChildren(h('div',{class:'mqt'},g(),g()));
+}
 function cnt(to){
   const el=$('#mt'),from=+el.dataset.v||0;el.dataset.v=to;cancelAnimationFrame(raf);
-  if(from===to||reduce()){el.textContent='Rp '+fmt(to);return}
+  if(from===to||reduce()){el.textContent=fmt(to);return}
   const t0=performance.now();
-  const f=n=>{const p=Math.min(1,(n-t0)/450);el.textContent='Rp '+fmt(from+(to-from)*(1-Math.pow(1-p,3)));if(p<1)raf=requestAnimationFrame(f)};
+  const f=n=>{const p=Math.min(1,(n-t0)/450);el.textContent=fmt(from+(to-from)*(1-Math.pow(1-p,3)));if(p<1)raf=requestAnimationFrame(f)};
   raf=requestAnimationFrame(f);
 }
 function renderCal(dir){
   const{y,m}=st.view,key=`${y}-${pad(m+1)}`;
   const rs=A().filter(r=>r.date.startsWith(key));
-  $('#mname').textContent=BL[m]+' '+y;$('#mc').textContent=rs.length+'x isi';
+  $('#mname').textContent=BL[m]+' '+y;$('#mc').textContent=rs.length?rs.length+'x isi bulan ini':'Belum ada isi bulan ini';renderTicker();
   cnt(rs.reduce((a,r)=>a+r.amount,0));
   const tot={};rs.forEach(r=>{tot[r.date]=(tot[r.date]||0)+r.amount});
   const lead=(new Date(y,m,1).getDay()+6)%7,days=new Date(y,m+1,0).getDate();
@@ -275,11 +321,16 @@ function renderCal(dir){
     const s=`${key}-${pad(d)}`,t=tot[s];
     g.append(h('button',{type:'button',class:'d'+(s===st.date?' on':'')+(s===today?' today':'')+(t?' has':'')+(s===st.pop?' pop':''),
       disabled:s>today,'aria-label':long(s)+(t?', isi BBM Rp '+fmt(t):''),
-      onclick:()=>{vb();st.date=s;renderCal();renderDay();anim($('#day'),'sw')}},h('b',{text:d}),h('i',{text:t?short(t):''})));
+      onclick:()=>{vb();pick(s)}},h('b',{text:d}),h('i',{text:t?short(t):''})));
   }
   st.pop=null;
   g.className='grid';if(dir&&!reduce()){void g.offsetWidth;g.classList.add(dir)}
   $('#next').disabled=key>=today.slice(0,7);
+}
+function pick(s){
+  const same=st.date===s;st.date=s;st.open=same?!st.open:true;
+  renderCal();renderDay();if(!same)anim($('#day'),'sw');
+  if(st.open)setTimeout(()=>$('#day').scrollIntoView({behavior:reduce()?'auto':'smooth',block:'nearest'}),380);
 }
 function go(n){
   const v=st.view,cur=+today.slice(0,4)*12+ +today.slice(5,7)-1,k=v.y*12+v.m+n;
@@ -293,7 +344,9 @@ function renderDay(){
   const ul=$('#dlist');ul.replaceChildren();
   const pids=new Set(st.pend.map(p=>p.id));
   const rs=A().filter(r=>r.date===st.date).sort((a,b)=>a.ts-b.ts);
-  if(!rs.length){ul.append(h('li',{class:'e',text:'Belum ada isi BBM di tanggal ini'}));return}
+  const di=$('#dinfo');di.textContent=rs.length?rs.length+'x isi, Rp '+fmt(rs.reduce((a,r)=>a+r.amount,0)):'Belum ada isi BBM di tanggal ini';di.className=rs.length?'has':'';
+  $('#day').classList.toggle('open',st.open);$('#dh').setAttribute('aria-expanded',String(st.open));
+  if(!rs.length){ul.append(h('li',{class:'e',text:'Belum ada catatan. Pilih nominal di bawah.'}));return}
   rs.forEach(r=>{
     let t;const x=h('button',{type:'button',class:'x',text:'Hapus'});
     x.onclick=()=>{
@@ -344,8 +397,9 @@ async function remove(id){
 
 // ---------- Riwayat ----------
 function renderHist(){
-  const b=$('#hist');b.hidden=!st.all;
-  $('#toggle').textContent=st.all?'Sembunyikan riwayat':'Tampilkan semua riwayat';
+  const b=$('#hist'),all=A();
+  $('#hs').classList.toggle('open',st.all);$('#hh').setAttribute('aria-expanded',String(st.all));
+  $('#hinfo').textContent=all.length?all.length+'x isi, total Rp '+fmt(all.reduce((a,r)=>a+r.amount,0)):'Belum ada riwayat';
   if(!st.all)return;
   b.replaceChildren();
   const rs=A().sort((a,b)=>b.date.localeCompare(a.date)||b.ts-a.ts);
@@ -390,7 +444,8 @@ $('#note').addEventListener('input',upd);
 $('#submit').onclick=submit;
 $('#sync').onclick=()=>flush().then(refresh);
 $('#lk').onclick=()=>lock();
-$('#toggle').onclick=()=>{st.all=!st.all;renderHist()};
+$('#hh').onclick=()=>{st.all=!st.all;renderHist()};
+$('#dh').onclick=()=>{st.open=!st.open;renderDay()};
 $('#prev').onclick=()=>go(-1);
 $('#next').onclick=()=>go(1);
 let sx=0;const cal=$('#cal');
